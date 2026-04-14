@@ -1,0 +1,233 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* EST Brand: literal font names — do NOT use var() here (Tailwind v4 resolves @theme at parse time) */
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Map Tailwind color utilities to CSS custom properties */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* EST-specific brand tokens */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-muted: var(--brand-muted);
+  --color-est-amber: var(--est-amber);
+  --color-est-amber-foreground: var(--est-amber-foreground);
+  --color-est-amber-muted: var(--est-amber-muted);
+
+  /* Radius tokens */
+  --radius-xs: calc(var(--radius) * 0.5);
+  --radius-sm: calc(var(--radius) * 0.75);
+  --radius-md: calc(var(--radius) * 0.875);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-full: 9999px;
+}
+
+/* ─── Light Mode (public site default) ─────────────────────────────── */
+:root {
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.13 0.015 255);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.13 0.015 255);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.13 0.015 255);
+
+  /* Navy blue — security, trust, premium */
+  --primary: oklch(0.26 0.095 249);
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.95 0.015 249);
+  --secondary-foreground: oklch(0.26 0.095 249);
+
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.52 0.015 255);
+
+  --accent: oklch(0.93 0.02 249);
+  --accent-foreground: oklch(0.26 0.095 249);
+
+  --destructive: oklch(0.55 0.2 25);
+  --border: oklch(0.88 0.01 255);
+  --input: oklch(0.88 0.01 255);
+  --ring: oklch(0.26 0.095 249);
+  --radius: 0.5rem;
+
+  /* EST Brand tokens */
+  --brand: oklch(0.26 0.095 249);              /* Deep navy */
+  --brand-foreground: oklch(0.985 0 0);
+  --brand-muted: oklch(0.93 0.03 249);
+
+  /* Warm amber/gold — CTAs, highlights */
+  --est-amber: oklch(0.68 0.185 56);
+  --est-amber-foreground: oklch(0.15 0 0);
+  --est-amber-muted: oklch(0.95 0.06 75);
+}
+
+/* ─── Dark Mode (admin dashboard) ──────────────────────────────────── */
+.dark {
+  --background: oklch(0.12 0.015 255);
+  --foreground: oklch(0.96 0 0);
+
+  --card: oklch(0.16 0.015 255);
+  --card-foreground: oklch(0.96 0 0);
+
+  --popover: oklch(0.16 0.015 255);
+  --popover-foreground: oklch(0.96 0 0);
+
+  --primary: oklch(0.55 0.12 249);
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.22 0.02 255);
+  --secondary-foreground: oklch(0.96 0 0);
+
+  --muted: oklch(0.22 0.02 255);
+  --muted-foreground: oklch(0.64 0.02 255);
+
+  --accent: oklch(0.22 0.025 249);
+  --accent-foreground: oklch(0.96 0 0);
+
+  --destructive: oklch(0.65 0.22 25);
+  --border: oklch(0.26 0.02 255);
+  --input: oklch(0.22 0.02 255);
+  --ring: oklch(0.55 0.12 249);
+
+  --brand: oklch(0.55 0.12 249);
+  --brand-foreground: oklch(0.985 0 0);
+  --brand-muted: oklch(0.22 0.04 249);
+
+  --est-amber: oklch(0.75 0.18 56);
+  --est-amber-foreground: oklch(0.12 0 0);
+  --est-amber-muted: oklch(0.22 0.05 65);
+}
+
+/* ─── Base styles ───────────────────────────────────────────────────── */
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 1000;
+  border-radius: 0.5rem;
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 0.75rem;
+}
+
+/* Focus visible ring — consistent across all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Rich-text content styles (for blog posts, product descriptions) ─ */
+.prose-est {
+  & h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  & h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  & p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+    color: var(--muted-foreground);
+  }
+  & ul,
+  & ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  & li {
+    margin-bottom: 0.25rem;
+    line-height: 1.7;
+    color: var(--muted-foreground);
+  }
+  & a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  & strong {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+  & blockquote {
+    border-left: 3px solid var(--est-amber);
+    padding-left: 1rem;
+    color: var(--muted-foreground);
+    font-style: italic;
+    margin: 1.5rem 0;
+  }
+}
