@@ -61,8 +61,7 @@ const serviceLinks = [
 
 export function Footer({ settings }: FooterProps) {
   const locationUrl = "https://maps.app.goo.gl/WXDSNh6swgonpxC17";
-  const locationLabel =
-    settings.address ?? "Kathmandu, Nepal";
+  const locationLabel = settings.address ?? "Kathmandu, Nepal";
   const phone = settings.phones?.primary ?? "9860819528";
   const phoneSecondary = settings.phones?.secondary;
   const email = settings.email ?? "everestsmarttraders@gmail.com";
