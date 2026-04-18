@@ -27,7 +27,7 @@ export function LoginForm() {
     setError(null);
 
     const loginDomain =
-      process.env.NEXT_PUBLIC_ADMIN_LOGIN_DOMAIN ?? "est.local";
+      process.env.NEXT_PUBLIC_ADMIN_LOGIN_DOMAIN ?? "est.com";
     const normalizedEmail = identifier.includes("@")
       ? identifier.trim().toLowerCase()
       : `${identifier.trim().toLowerCase()}@${loginDomain}`;
